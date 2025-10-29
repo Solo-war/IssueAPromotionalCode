@@ -37,3 +37,24 @@ Notes
 - Middlewares retained: dedup and rate-limit
 - Metrics endpoint preserved (Prometheus). Webhook server unchanged.
 
+Запуск в Docker (RU)
+- Polling (проще всего):
+  - Убедитесь, что в `.env` задан `MODE=polling` (или переменная отсутствует).
+  - Сборка: `docker build -t subscription-gate .`
+  - Запуск: `docker run --rm --name subscription-gate --env-file .env subscription-gate`
+
+- Webhook (если нужен внешний доступ):
+  - В `.env` укажите: `MODE=webhook`, `WEBHOOK_URL=https://your.domain.tld/bot`, `WEBAPP_HOST=0.0.0.0`, `WEBAPP_PORT=8080`.
+  - Запуск с портом: `docker run --rm --name subscription-gate -p 8080:8080 --env-file .env subscription-gate`
+  - Нужен обратный прокси/SSL, чтобы Telegram мог достучаться до `WEBHOOK_URL`.
+
+- Docker Compose (бот + локальная БД):
+  - В `docker-compose.yml` уже описаны сервисы `db` (Postgres) и `bot`.
+  - Для бота в compose переопределяется `DATABASE_URL` на `postgresql+asyncpg://postgres:postgres@db:5432/promo` (подключение по имени сервиса `db`).
+  - Команды: `docker compose build` и `docker compose up -d`
+  - Логи бота: `docker compose logs -f bot`
+
+Чек-лист переменных окружения
+- Обязательные: `BOT_TOKEN`, `SUBSCRIPTION_TARGET`, и один из `PRIVATE_GROUP_INVITE_LINK` или `PRIVATE_GROUP_ID`.
+- Рекомендуется: `SUBSCRIPTION_URL` для кнопки «Открыть канал».
+- Права: для генерации инвайта по `PRIVATE_GROUP_ID` бот должен быть админом в целевом чате.
