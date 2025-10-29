@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-wheel-metadata/
+
+# Editors
+.idea/
+.vscode/
+
+# Python tooling
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local env
+.env
+
+# Alembic
+alembic/*.log
+
+# OS
+Thumbs.db
+.DS_Store
