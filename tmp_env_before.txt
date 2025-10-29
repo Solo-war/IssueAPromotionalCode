@@ -1,0 +1,92 @@
+# Copy to .env and fill values
+BOT_TOKEN=8163891120:AAEdRfBAaw0jcyz8ijsZnieqdFN3yWN58gI
+CHANNEL_ID=3198802654
+
+# PostgreSQL connection string, async driver
+DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5432/promo
+
+# Promo config
+PROMO_CODE=SPRING-INSPIRE-2024
+PROMO_TOTAL_LIMIT=200
+PROMO_PER_USER_LIMIT=1
+# ISO 8601 timestamps, e.g. 2025-03-01T00:00:00Z
+PROMO_START_AT=adsfcafasdfacsdas
+PROMO_END_AT= 
+
+# Comma-separated list of active post ids (max 5)
+# Example: 5,12 (IDs from links like t.me/c/xxxxxxxxxx/5)
+ACTIVE_POST_IDS=2
+
+# Logging
+LOG_LEVEL=INFO
+LOG_JSON=false
+
+# Optional Sentry DSN
+SENTRY_DSN=
+
+# Webhook mode (optional). If not set, falls back to long polling
+MODE=webhook  # values: webhook|polling
+WEBHOOK_URL=https://your.domain.tld/bot
+WEBHOOK_PATH=/telegram
+WEBHOOK_SECRET=
+WEBAPP_HOST=0.0.0.0
+WEBAPP_PORT=8080
+DROP_PENDING_UPDATES=true
+
+# Rate limiting / anti-spam
+RATE_LIMIT_USER_RPS=1
+RATE_LIMIT_USER_BURST=3
+RATE_LIMIT_GLOBAL_RPS=50
+RATE_LIMIT_GLOBAL_BURST=100
+DEDUP_TTL_SECONDS=120
+
+# Prometheus metrics (polling mode uses a small internal server)
+METRICS_HOST=0.0.0.0
+METRICS_PORT=0
+-----
+# Copy to .env and fill values
+BOT_TOKEN=8163891120:AAEdRfBAaw0jcyz8ijsZnieqdFN3yWN58gI
+CHANNEL_ID=3198802654
+
+# PostgreSQL connection string, async driver
+DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5432/promo
+
+# Subscription-gate
+# Chat where to check membership (id like -100..., @username, or URL)
+SUBSCRIPTION_TARGET=t.me/asdfsvaa
+
+# URL opened by the "Открыть канал" button (optional, but recommended)
+SUBSCRIPTION_URL=
+# Access issuance:
+# A) Fixed invite link
+PRIVATE_GROUP_INVITE_LINK=https://t.me/+lOAwiRTJCPcwNWFh
+# B) Or chat id to generate invite link at runtime (bot must be admin)
+PRIVATE_GROUP_ID=
+
+# Logging
+LOG_LEVEL=INFO
+LOG_JSON=false
+
+# Optional Sentry DSN
+SENTRY_DSN=
+
+# Webhook mode (optional). If not set, falls back to long polling
+MODE=webhook  # values: webhook|polling
+WEBHOOK_URL=https://your.domain.tld/bot
+WEBHOOK_PATH=/telegram
+WEBHOOK_SECRET=
+WEBAPP_HOST=0.0.0.0
+WEBAPP_PORT=8080
+DROP_PENDING_UPDATES=true
+
+# Rate limiting / anti-spam
+RATE_LIMIT_USER_RPS=1
+RATE_LIMIT_USER_BURST=3
+RATE_LIMIT_GLOBAL_RPS=50
+RATE_LIMIT_GLOBAL_BURST=100
+DEDUP_TTL_SECONDS=120
+
+# Prometheus metrics (polling mode uses a small internal server)
+METRICS_HOST=0.0.0.0
+METRICS_PORT=0
+

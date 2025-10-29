@@ -6,7 +6,7 @@ from datetime import datetime, timedelta, timezone
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 
-from bot.db.models import PromoIssue, Comment, User
+from bot.db.models import Comment, PromoIssue, User
 
 
 async def main() -> None:
@@ -22,12 +22,16 @@ async def main() -> None:
     async with sf() as session:
         # Issues by status
         q_issues = await session.execute(
-            select(PromoIssue.status, func.count()).where(PromoIssue.issued_at >= week_ago).group_by(PromoIssue.status)
+            select(PromoIssue.status, func.count())
+            .where(PromoIssue.issued_at >= week_ago)
+            .group_by(PromoIssue.status)
         )
         issues = {row[0]: row[1] for row in q_issues.all()}
 
         # New users
-        q_users = await session.execute(select(func.count()).select_from(User).where(User.created_at >= week_ago))
+        q_users = await session.execute(
+            select(func.count()).select_from(User).where(User.created_at >= week_ago)
+        )
         new_users = int(q_users.scalar_one())
 
         # Comments recorded
@@ -48,4 +52,3 @@ if __name__ == "__main__":
     import asyncio
 
     asyncio.run(main())
-

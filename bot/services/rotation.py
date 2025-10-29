@@ -4,7 +4,6 @@ import json
 from datetime import datetime, timedelta, timezone
 from typing import Iterable
 
-from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from ..db.models import Config

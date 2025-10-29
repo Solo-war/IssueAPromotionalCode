@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import types as pytypes
-
 import pytest
 
 from bot.services.subscription import is_subscribed

@@ -4,7 +4,7 @@ import os
 from logging.config import fileConfig
 
 from sqlalchemy import engine_from_config, pool
-from sqlalchemy.engine import Connection
+
 from alembic import context
 
 # this is the Alembic Config object, which provides
@@ -16,9 +16,10 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
+from bot.db import models  # noqa: F401,E402
+
 # Import models metadata for autogenerate
 from bot.db.base import Base  # noqa: E402
-from bot.db import models  # noqa: F401,E402
 
 target_metadata = Base.metadata
 
@@ -69,4 +70,3 @@ if context.is_offline_mode():
     run_migrations_offline()
 else:
     run_migrations_online()
-
